@@ -1,11 +1,10 @@
 package ru.tokyolifehard.taskmanager.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -16,7 +15,8 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     private String username;
@@ -25,4 +25,6 @@ public class User {
     private String password;
     private LocalDateTime createdTime;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<Task> tasks;
 }

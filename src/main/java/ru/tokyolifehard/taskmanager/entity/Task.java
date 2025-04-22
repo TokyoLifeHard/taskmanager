@@ -1,8 +1,6 @@
 package ru.tokyolifehard.taskmanager.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -16,7 +14,7 @@ import java.util.Date;
 public class Task {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
@@ -25,7 +23,11 @@ public class Task {
     private Date dueDate;
     private Date createdAt;
     private Date updatedAt;
-    private Long creatorId;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
     private Long AssigneeId;
     private Long projectId;
 }
