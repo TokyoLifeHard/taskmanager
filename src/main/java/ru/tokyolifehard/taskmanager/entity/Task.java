@@ -15,6 +15,7 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private String title;
     private String description;
@@ -28,6 +29,8 @@ public class Task {
     @JoinColumn(name="user_id")
     private User user;
 
-    private Long AssigneeId;
-    private Long projectId;
+    @ManyToOne
+    @JoinColumn(name="project_id")
+    private Project project;
+
 }
