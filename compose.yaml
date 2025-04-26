@@ -1,9 +1,30 @@
 services:
-  postgres:
-    image: 'postgres:latest'
+  postgresdb:
+    image: postgres
+    restart: unless-stopped
+    env_file: ./.env
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - POSTGRES_USER=$POSTGRESDB_USER
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+      - POSTGRES_DB=$POSTGRESDB_DATABASE
     ports:
-      - '5432'
+      - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
+    volumes:
+      - ./sql_scripts/create_database_task_manager.sql:/docker-entrypoint-initdb.d/create_database_task_manager.sql
+
+  pgadmin:
+    container_name: pgadmin4_taskmanager
+    image: dpage/pgadmin4:7
+    env_file: ./.env
+    depends_on:
+      - postgresdb
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL
+      - PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD
+    ports:
+      - $PGADMIN_LOCAL_PORT:$PGADMIN_DOCKER_PORT
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+volumes:
+  pgadmin-data:
