@@ -12,7 +12,8 @@ import java.util.Set;
 @EqualsAndHashCode
 @Getter
 @Setter
-public class User {
+
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
