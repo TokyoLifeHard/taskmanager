@@ -3,6 +3,7 @@ package ru.tokyolifehard.taskmanager.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -21,9 +22,9 @@ public class Task {
     private String description;
     private Status status;
     private Priority priority;
-    private Date dueDate;
-    private Date createdAt;
-    private Date updatedAt;
+    private Instant dueDate;
+    private Instant createdAt;
+    private Instant updatedAt;
 
     @ManyToOne
     @JoinColumn(name="user_id")
