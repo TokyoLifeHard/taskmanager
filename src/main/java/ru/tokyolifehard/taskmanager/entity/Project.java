@@ -20,7 +20,7 @@ import java.util.Set;
         resultClass = Project.class
 )
 
-@NamedNativeQuery(name = "createProjectById",
+@NamedNativeQuery(name = "createProject",
         query = "insert into project(name,description,startDate,endDate,status)" +
                 "values(:name,:description,:startDate,:endDate,:status)",
         resultClass = Project.class
