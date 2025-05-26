@@ -48,21 +48,14 @@ public class TaskRepository {
 
     public void deleteTaskById(Long taskId){
         this.taskSessionFactory.getCurrentSession()
-                .createNativeQuery("delete from task where id=:id",Task.class)
-                .setParameter("id",taskId)
+                .createNativeQuery("delete from task where id=:taskId",Task.class)
+                .setParameter("taskId",taskId)
                 .executeUpdate();
 
         this.taskSessionFactory.getCurrentSession().close();
     }
 
-    public void updateTaskById(Long taskId){
-        this.taskSessionFactory.getCurrentSession()
-                .createNativeQuery("delete from task where id=:id",Task.class)
-                .setParameter("id",taskId)
-                .executeUpdate();
 
-        this.taskSessionFactory.getCurrentSession().close();
-    }
 
     public void updateTaskById(Long taskId,TaskDTO taskDTO){
         this.taskSessionFactory.getCurrentSession()
