@@ -16,10 +16,10 @@ public class TaskDTO {
     private String description;
     private String projectName;
     private Priority priority;
-    private String leadTime;
+    private Instant leadTime;
     @Setter(AccessLevel.NONE) private Instant createdAt;
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = Instant.now();
     }
 }
