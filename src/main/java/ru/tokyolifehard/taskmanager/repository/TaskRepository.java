@@ -21,10 +21,11 @@ public class TaskRepository {
 
     public Task getTaskById(Long id){
         Task task = this.taskSessionFactory.getCurrentSession()
-                .createNativeQuery("select * from task where id =:id", Task.class)
+                .createNativeQuery("select * from task t where t.id =:id" +
+                        "inner join project p on t.project_id = p.id", Task.class)
                 .setParameter(0, id)
                 .list()
-                .get(0);
+                .getFirst();
         this.taskSessionFactory.getCurrentSession().close();
 
         return task;
