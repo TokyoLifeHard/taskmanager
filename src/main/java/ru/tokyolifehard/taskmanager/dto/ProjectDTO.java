@@ -6,6 +6,8 @@ import lombok.Setter;
 import ru.tokyolifehard.taskmanager.entity.Status;
 
 import java.time.Instant;
+import java.util.Set;
+
 @Getter
 @Setter
 public class ProjectDTO {
@@ -19,4 +21,6 @@ public class ProjectDTO {
     public void setStartDate(Instant startDate) {
         this.startDate = Instant.now();
     }
+
+    private Set<TaskDTO> tasks;
 }
