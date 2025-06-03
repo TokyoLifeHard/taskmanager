@@ -32,20 +32,19 @@ public class TaskController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> createTask(TaskDTO taskDTO){
+    public ResponseEntity<String> createTask(@RequestBody TaskDTO taskDTO){
         this.taskService.createTask(taskDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> updateTask(@PathVariable String taskId,TaskDTO taskDTO){
+    public ResponseEntity<?> updateTask(@PathVariable String taskId,@RequestBody TaskDTO taskDTO){
         this.taskService.updateTask(Long.valueOf(taskId),taskDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PatchMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> modifyTask(String taskId,TaskDTO incomeTaskDTO){
-        TaskDTO taskDTO = taskService.getTaskByTitle(incomeTaskDTO.getTitle());
+    public ResponseEntity<?> modifyTask(@PathVariable String taskId,@RequestBody TaskDTO incomeTaskDTO){
         this.taskService.modifyTask(Long.valueOf(taskId),incomeTaskDTO);
         return ResponseEntity.ok().build();
     }
