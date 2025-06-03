@@ -34,16 +34,16 @@ public class TaskController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createTask(@RequestBody TaskDTO taskDTO){
         this.taskService.createTask(taskDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(consumes = "application/json", produces = "application/json")
+    @PutMapping(path = "/{taskId}",consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> updateTask(@PathVariable String taskId,@RequestBody TaskDTO taskDTO){
         this.taskService.updateTask(Long.valueOf(taskId),taskDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping(consumes = "application/json", produces = "application/json")
+    @PatchMapping(path = "/{taskId}",consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> modifyTask(@PathVariable String taskId,@RequestBody TaskDTO incomeTaskDTO){
         this.taskService.modifyTask(Long.valueOf(taskId),incomeTaskDTO);
         return ResponseEntity.ok().build();
@@ -52,7 +52,7 @@ public class TaskController {
     @DeleteMapping(path = "/{taskId}",consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> deleteTask(@PathVariable String taskId){
         taskService.deleteById(Long.valueOf(taskId));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
