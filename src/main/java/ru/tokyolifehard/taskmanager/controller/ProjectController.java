@@ -19,7 +19,7 @@ public class ProjectController {
         return this.projectService.getProjectById(Long.valueOf(projectId));
     }
 
-    @GetMapping(path = "/{projectId}",consumes = "application/json", produces = "application/json")
+    @GetMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> getProjects(
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "limit", defaultValue = "50") int limit,

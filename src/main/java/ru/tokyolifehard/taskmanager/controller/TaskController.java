@@ -21,7 +21,7 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
-    @GetMapping(path = "/{taskId}",consumes = "application/json", produces = "application/json")
+    @GetMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> getTasks(
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "limit", defaultValue = "50") int limit,

@@ -1,8 +1,6 @@
 package ru.tokyolifehard.taskmanager.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import ru.tokyolifehard.taskmanager.entity.Priority;
 
 
@@ -11,6 +9,8 @@ import java.util.Date;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaskDTO {
     private String title;
     private String description;
