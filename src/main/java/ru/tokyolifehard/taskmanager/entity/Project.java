@@ -48,6 +48,7 @@ public class Project {
     private String description;
     private Instant startDate;
     private Instant endDate;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(mappedBy = "project")
